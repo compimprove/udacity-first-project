@@ -3,6 +3,11 @@ variable "prefix" {
   description = "The prefix to use for all resources"
 }
 
+variable "application_port" {
+  description = "The port that web server run on"
+  default = 80
+}
+
 variable "location" {
  description = "The Azure region"
  default = "westeurope"

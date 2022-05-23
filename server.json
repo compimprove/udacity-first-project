@@ -18,7 +18,7 @@
 			"image_offer": "UbuntuServer",
 			"image_sku": "18_04-lts-gen2",
 			"managed_image_resource_group_name": "AzuredevOps",
-			"managed_image_name": "myPackerImage",
+			"managed_image_name": "packerImage",
 			"build_resource_group_name": "AzuredevOps",
 			"vm_size": "Standard_B1s"
 		}
@@ -26,8 +26,8 @@
 	"provisioners": [
 		{
 			"inline": [
-				"echo 'Hello, World!' > index.html",
-				"nohup busybox httpd -f -p 80 &"
+				"sudo apt-get update",
+				"sudo apt-get -y install nginx"
 			],
 			"inline_shebang": "/bin/sh -x",
 			"type": "shell"
