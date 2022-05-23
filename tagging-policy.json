@@ -1,0 +1,18 @@
+{
+  "type": "Microsoft.Authorization/policyDefinitions",
+  "name": "tagging-policy",
+  "properties": {
+    "mode": "indexed",
+    "displayName": "Denying Tag Policy",
+    "description": "Deny creation of indexed resources that are not have tags",
+    "policyRule": {
+      "if": {
+        "field": "tags",
+        "exist": "false"
+      },
+      "then": {
+        "effect": "deny"
+      }
+    }
+  }
+}
