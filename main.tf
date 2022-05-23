@@ -16,6 +16,9 @@ resource "azurerm_virtual_network" "main" {
   address_space       = ["10.0.0.0/22"]
   location            = data.azurerm_resource_group.main.location
   resource_group_name = data.azurerm_resource_group.main.name
+  tags = {
+    project-name : var.prefix
+  }
 }
 
 resource "azurerm_subnet" "main" {
@@ -30,20 +33,6 @@ resource "azurerm_network_security_group" "main" {
   location            = data.azurerm_resource_group.main.location
   resource_group_name = data.azurerm_resource_group.main.name
 }
-
-# resource "azurerm_network_security_rule" "DenyDirectInternet" {
-#   name                        = "DenyDirectInternet"
-#   priority                    = 110
-#   direction                   = "Inbound"
-#   access                      = "Deny"
-#   protocol                    = "Tcp"
-#   source_port_range           = "*"
-#   destination_port_range      = "*"
-#   source_address_prefix       = "Internet"
-#   destination_address_prefix  = azurerm_subnet.main.address_prefixes[0]
-#   resource_group_name         = data.azurerm_resource_group.main.name
-#   network_security_group_name = azurerm_network_security_group.main.name
-# }
 
 resource "azurerm_network_security_rule" "AllowHTTPInbound" {
   name                        = "AllowHTTPInbound"
@@ -127,6 +116,9 @@ resource "azurerm_linux_virtual_machine" "main" {
   admin_password                  = var.password
   disable_password_authentication = false
   availability_set_id             = azurerm_availability_set.main.id
+  tags = {
+    project-name : var.prefix
+  }
 
   network_interface_ids = [
     azurerm_network_interface.main[count.index].id,

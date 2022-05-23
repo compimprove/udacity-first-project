@@ -37,7 +37,7 @@ az login
 
 **Using Terraform to build the web server with load balancer**
 1. Initialize Terraform and it's dependencies `terraform init`
-2. Customize `variables.tf` for your need
+2. Customize `vars.tf` for your need
 3. Run `terraform plan` to verify what will be created.
 4. Run `terraform apply` to build the web server and load balancer
 
