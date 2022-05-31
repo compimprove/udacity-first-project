@@ -10,12 +10,12 @@ variable "application_port" {
 
 variable "username" {
   description = "The username of virtual machine"
-  default     = "dinhnt"
+  default     = "test"
 }
 
 variable "password" {
   description = "The password of virtual machine"
-  default     = "1234567890"
+  default     = "123456"
 }
 
 variable "vm-count" {
